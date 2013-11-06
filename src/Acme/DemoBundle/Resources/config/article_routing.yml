@@ -1,0 +1,12 @@
+_article:
+    resource: "@AcmeDemoBundle/Controller/ArticleController.php"
+    type:     annotation
+    prefix:   /article
+
+_article_view:
+    path:  /article/view
+    defaults: { _controller: AcmeDemoBundle:Article:view }
+
+_article_edit:
+    path:  /article/edit
+    defaults: { _controller: AcmeDemoBundle:Article:edit }
