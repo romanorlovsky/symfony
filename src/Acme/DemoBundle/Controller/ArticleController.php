@@ -21,7 +21,11 @@ class ArticleController extends Controller
             array('title' => 'Article actions')
         );
 
-        return new Response($content);
+        $response = new Response($content);
+
+        $response->headers->set('Content-Type', 'text/html');
+
+        return $response;
     }
 
     public function viewAction()
