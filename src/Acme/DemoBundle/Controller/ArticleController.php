@@ -9,16 +9,19 @@ use Acme\DemoBundle\Form\ContactType;
 // these import the "@Route" and "@Template" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Response;
 
 class ArticleController extends Controller
 {
-    /**
-     * @Route("/", name="_article")
-     * @Template()
-     */
+
     public function indexAction()
     {
-        return array('title' => 'Article actions');
+        $content = $this->renderView(
+            'AcmeDemoBundle:Article:index.html.twig',
+            array('title' => 'Article actions')
+        );
+
+        return new Response($content);
     }
 
     public function viewAction()

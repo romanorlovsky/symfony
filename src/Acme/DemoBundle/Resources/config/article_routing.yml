@@ -1,7 +1,6 @@
 _article:
-    resource: "@AcmeDemoBundle/Controller/ArticleController.php"
-    type:     annotation
-    prefix:   /article
+    path:   /article
+    defaults: { _controller: AcmeDemoBundle:Article:index }
 
 _article_view:
     path:  /article/view
