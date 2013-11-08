@@ -1,5 +1,11 @@
-<h1 class="title">{{ title }}</h1>
-<ul id="demo-list">
-    <li><a href="{{ path('_article_view') }}">View</a></li>
-    <li><a href="{{ path('_article_edit') }}">Edit</a></li>
-</ul>
+{% extends "AcmeDemoBundle:Article:layout.html.twig" %}
+
+{% block title "Atricle - " ~title %}
+
+{% block content %}
+    <h1 class="title">{{ title }}</h1>
+    <ul id="demo-list">
+        <li><a href="{{ path('_article_view') }}">View</a></li>
+        <li><a href="{{ path('_article_edit') }}">Edit</a></li>
+    </ul>
+{% endblock %}

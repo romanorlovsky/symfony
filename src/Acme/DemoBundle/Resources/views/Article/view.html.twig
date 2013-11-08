@@ -1,12 +1,18 @@
-<h1>View {{ title }}!</h1>
-<ul>
-    <li>
-        <strong>ID:</strong> {{ id }}
-    </li>
-    <li>
-        <strong>Title:</strong> {{ title }}
-    </li>
-    <li>
-        <strong>Description:</strong> {{ desc }}
-    </li>
-</ul>
+{% extends "AcmeDemoBundle:Article:layout.html.twig" %}
+
+{% block title "Atricle - " ~title %}
+
+    {% block content %}
+        <h1 class="title">View {{ title }}</h1>
+        <ul>
+            <li>
+                <strong>ID:</strong> {{ id }}
+            </li>
+            <li>
+                <strong>Title:</strong> {{ title }}
+            </li>
+            <li>
+                <strong>Description:</strong> {{ desc }}
+            </li>
+        </ul>
+    {% endblock %}

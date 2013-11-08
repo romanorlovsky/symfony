@@ -3,10 +3,21 @@
 {% block title page_title %}
 
 {% block content %}
-   {# <form action="{{ path('_article_edit') }}" method="POST" id="edit_form">
-        {{ form_row(title) }}
-        {{ form_row(desc) }}
-
-        <input type="submit" value="Send" class="symfony-button-grey" />
-    </form>#}
+    <h1 class="title">{{ page_title }}</h1>
+    <form action="{{ path('_article_edit') }}" method="POST" id="edit_form">
+        <input type="hidden" name="id" value="{{ id }}">
+        <ul>
+            <li>
+                <label for="title">Title: </label>
+                <input type="text" id="title" name="title" value="{{ title }}">
+            </li>
+            <li>
+                <label for="desc">Description: </label>
+                <input type="text" id="desc" name="desc" value="{{ desc }}">
+            </li>
+            <li>
+                <input type="submit" value="Send" class="symfony-button-grey"/>
+            </li>
+        </ul>
+    </form>
 {% endblock %}
