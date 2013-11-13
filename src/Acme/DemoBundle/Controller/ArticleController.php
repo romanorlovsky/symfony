@@ -16,38 +16,36 @@ class ArticleController extends Controller
 
     public function indexAction()
     {
-        $content = $this->renderView(
-            'AcmeDemoBundle:Article:index.html.twig',
-            array('title' => 'Article actions')
+        $article = array(
+            'title' => 'Home',
+            'project_name' => 'Article'
         );
 
-        $response = new Response($content);
-
-        $response->headers->set('Content-Type', 'text/html');
-
-        return $response;
+        return $this->render('AcmeDemoBundle:Article:index.html.twig', $article);
     }
 
-    public function viewAction()
+    public function aboutAction()
     {
         $article = array(
             'id' => 1,
-            'title' => 'Hello',
-            'desc' => 'Hello world'
-        );
-
-        return $this->render('AcmeDemoBundle:Article:view.html.twig', $article);
-    }
-
-    public function editAction()
-    {
-        $article = array(
-            'id' => 1,
-            'title' => 'Hello',
+            'title' => 'About',
             'desc' => 'Hello world',
-            'page_title' => 'Edit article'
+            'project_name' => 'Article'
         );
 
-        return $this->render('AcmeDemoBundle:Article:edit.html.twig', $article);
+        return $this->render('AcmeDemoBundle:Article:about.html.twig', $article);
+    }
+
+    public function contactAction()
+    {
+        $article = array(
+            'id' => 1,
+            'title' => 'Contact',
+            'desc' => 'Hello world',
+            'page_title' => 'Contact',
+            'project_name' => 'Article'
+        );
+
+        return $this->render('AcmeDemoBundle:Article:contact.html.twig', $article);
     }
 }

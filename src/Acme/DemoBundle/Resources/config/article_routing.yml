@@ -2,10 +2,10 @@ _article:
     path:   /article
     defaults: { _controller: AcmeDemoBundle:Article:index }
 
-_article_view:
-    path:  /article/view
-    defaults: { _controller: AcmeDemoBundle:Article:view }
+_article_about:
+    path:  /article/about
+    defaults: { _controller: AcmeDemoBundle:Article:about }
 
-_article_edit:
-    path:  /article/edit
-    defaults: { _controller: AcmeDemoBundle:Article:edit }
+_article_contact:
+    path:  /article/contact
+    defaults: { _controller: AcmeDemoBundle:Article:contact }

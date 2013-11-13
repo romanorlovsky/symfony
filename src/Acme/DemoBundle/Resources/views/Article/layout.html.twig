@@ -1,5 +1,39 @@
-{% extends "AcmeDemoBundle::layout.html.twig" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset={{ _charset }}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{{ asset('bundles/acmedemo/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    {% stylesheets '@AcmeDemoBundle/Resources/public/css/*.css' %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    {% block head %}{% endblock %}
+</head>
 
-{% block content_header_more %}
-    <li><a href="{{ path('_article') }}">Article</a></li>
-{% endblock %}
+<body>
+
+{{ include('AcmeDemoBundle:Article:_navigation.html.twig') }}
+
+<div class="container">
+
+    <div class="starter-template">
+        {% block content %}{% endblock %}
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{{ asset('bundles/acmedemo/js/jquery-1.10.2.min.js') }}"></script>
+<script src="{{ asset('bundles/acmedemo/js/bootstrap.min.js') }}"></script>
+</body>
+</html>
