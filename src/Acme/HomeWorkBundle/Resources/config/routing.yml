@@ -1,0 +1,11 @@
+_article:
+    path:   /
+    defaults: { _controller: AcmeHomeWorkBundle:Article:index }
+
+_article_about:
+    path:  /about
+    defaults: { _controller: AcmeHomeWorkBundle:Article:about }
+
+_article_contact:
+    path:  /contact
+    defaults: { _controller: AcmeHomeWorkBundle:Article:contact }

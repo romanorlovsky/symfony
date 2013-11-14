@@ -25,7 +25,7 @@ monolog:
             level: info
 
 assetic:
-    bundles: [ AcmeDemoBundle ]
+    bundles: [ AcmeHomeWorkBundle ]
     use_controller: true
 
 #swiftmailer:

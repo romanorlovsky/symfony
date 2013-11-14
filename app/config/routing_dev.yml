@@ -14,9 +14,5 @@ _main:
     resource: routing.yml
 
 # AcmeDemoBundle routes (to be removed)
-_acme_demo:
-    resource: "@AcmeDemoBundle/Resources/config/routing.yml"
-
-# AcmeDemoBundle worker routes (to be removed)
-_acme_demo_article:
-    resource: "@AcmeDemoBundle/Resources/config/article_routing.yml"
+_acme_home_work:
+    resource: "@AcmeHomeWorkBundle/Resources/config/routing.yml"
