@@ -1,0 +1,22 @@
+{% extends "AcmeHomeWorkBundle::layout.html.twig" %}
+
+{% block title "Atricle - User" %}
+{% block user user %}
+
+{% block content %}
+    <h1 class="title">{{ page.title }}</h1>
+    <div>{{ page.description }}</div>
+
+    <h2>User profile</h2>
+    <ul>
+        <li>
+            <strong>Nickname: </strong>{{ user.nickName }}
+        </li>
+        <li>
+            <strong>Display name: </strong>{{ user.displayName }}
+        </li>
+        <li>
+            <strong>Register date: </strong>{{ user.registerDate|date('d/m/Y') }}
+        </li>
+    </ul>
+{% endblock %}

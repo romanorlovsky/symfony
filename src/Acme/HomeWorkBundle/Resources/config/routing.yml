@@ -9,3 +9,7 @@ _article_about:
 _article_contact:
     path:  /contact
     defaults: { _controller: AcmeHomeWorkBundle:Article:contact }
+
+_user:
+    path:  /user
+    defaults: { _controller: AcmeHomeWorkBundle:Article:user }
