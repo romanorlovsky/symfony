@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Acme\DemoBundle\Entity\Article;
 use Acme\DemoBundle\Entity\Page;
+use Acme\DemoBundle\Entity\User;
 
 class ArticleController extends Controller
 {
@@ -34,9 +35,15 @@ class ArticleController extends Controller
             $articles[] = $article;
         }
 
+        $user = new User();
+        $user->setNickName('romanorlosky');
+        $user->setDisplayName('Roman Orlovsky');
+        $user->setRegisterDate(time());
+
         return $this->render('AcmeDemoBundle:Article:index.html.twig', array(
                 'page' => $home,
-                'articles' => $articles
+                'articles' => $articles,
+                'user' => $user
             )
         );
     }
@@ -47,8 +54,14 @@ class ArticleController extends Controller
         $about->setTitle('About');
         $about->setDescription('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
 
+        $user = new User();
+        $user->setNickName('romanorlosky');
+        $user->setDisplayName('Roman Orlovsky');
+        $user->setRegisterDate(time());
+
         return $this->render('AcmeDemoBundle:Article:about.html.twig', array(
-                'page' => $about
+                'page' => $about,
+                'user' => $user
             )
         );
     }
@@ -59,8 +72,14 @@ class ArticleController extends Controller
         $contact->setTitle('Contact');
         $contact->setDescription('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
 
+        $user = new User();
+        $user->setNickName('romanorlosky');
+        $user->setDisplayName('Roman Orlovsky');
+        $user->setRegisterDate(time());
+
         return $this->render('AcmeDemoBundle:Article:contact.html.twig', array(
-                'page' => $contact
+                'page' => $contact,
+                'user' => $user
             )
         );
     }

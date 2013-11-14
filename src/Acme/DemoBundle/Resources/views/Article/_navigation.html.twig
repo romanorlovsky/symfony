@@ -18,5 +18,10 @@
             </ul>
         </div>
         <!--/.nav-collapse -->
+        {% if user %}
+            <div class="user-block">
+                Hello, <span class="nickname">{{ user.displayName }}</span>
+            </div>
+        {% endif %}
     </div>
 </div>
