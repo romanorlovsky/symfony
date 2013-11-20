@@ -41,6 +41,9 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $admin->setDisplayName('Roman Orlovsky');
 
         $manager->persist($admin);
+
+        $this->addReference('admin-user', $admin);
+
         $manager->flush();
     }
 
