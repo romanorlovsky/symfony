@@ -8,8 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <title>{% block title %}{% endblock %}</title>
-    <link href="{{ asset('bundles/acmedemo/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-    {% stylesheets '@AcmeHomeWorkBundle/Resources/public/css/*.css' %}
+    {% stylesheets '@bootstrap_min_css' '@bootstrap_theme_css' '@starter_template_css' %}
         <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
     {% endstylesheets %}
     {% block head %}{% endblock %}
@@ -33,7 +32,8 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="{{ asset('bundles/acmedemo/js/jquery-1.10.2.min.js') }}"></script>
-<script src="{{ asset('bundles/acmedemo/js/bootstrap.min.js') }}"></script>
+{% javascripts '@jquery' '@javaScript_bootstrap' %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
 </body>
 </html>

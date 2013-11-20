@@ -45,15 +45,19 @@ assetic:
             filters:
                 - cssrewrite
             output: css/bootstrap.min.css
-#        footer_css:
-#            inputs:
-#                - %kernel.root_dir%/../src/GeekHub/Homework5Bundle/Resources/public/css/footer.css
-#            output: css/footer.css
+        starter_template_css:
+            inputs:
+                - %kernel.root_dir%/../src/Acme/HomeWorkBundle/Resources/public/css/starter-template.css
+            output: css/starter-template.css
+        bootstrap_theme_css:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap-theme.min.css
+            output: css/bootstrap-theme.min.css
         jquery:
             inputs:
                 - %kernel.root_dir%/../vendor/components/jquery/jquery.min.js
             output: js/jquery.js
-        javaScript-bootstrap:
+        javaScript_bootstrap:
             inputs:
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.min.js
             output: js/bootstrap.min.js
