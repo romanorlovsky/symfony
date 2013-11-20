@@ -3,39 +3,138 @@
 
 namespace Acme\HomeWorkBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
+/**
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="Acme\HomeWorkBundle\Entity\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
+ */
 class User
 {
-    protected $nickName;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nick", type="string", length=255)
+     */
+    protected $nick;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255)
+     */
+    protected $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="displayName", type="string", length=255)
+     */
     protected $displayName;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="registerDate", type="datetime")
+     */
     protected $registerDate;
 
     /**
-     * @param mixed $nickName
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="user")
      */
-    public function setNickName($nickName)
+    protected $articles;
+
+    public function __construct()
     {
-        $this->nickName = $nickName;
+        $this->articles = new ArrayCollection();
     }
 
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return integer
      */
-    public function getNickName()
+    public function getId()
     {
-        return $this->nickName;
+        return $this->id;
     }
 
     /**
-     * @param mixed $displayName
+     * Set nick
+     *
+     * @param string $nick
+     * @return User
+     */
+    public function setNick($nick)
+    {
+        $this->nick = $nick;
+
+        return $this;
+    }
+
+    /**
+     * Get nick
+     *
+     * @return string
+     */
+    public function getNick()
+    {
+        return $this->nick;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set displayName
+     *
+     * @param string $displayName
+     * @return User
      */
     public function setDisplayName($displayName)
     {
         $this->displayName = $displayName;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get displayName
+     *
+     * @return string
      */
     public function getDisplayName()
     {
@@ -43,19 +142,55 @@ class User
     }
 
     /**
-     * @param mixed $registerDate
+     * Set registerDate
+     *
+     * @ORM\PrePersist
      */
-    public function setRegisterDate($registerDate)
+    public function setRegisterDate()
     {
-        $this->registerDate = $registerDate;
+        $this->registerDate = new \DateTime();
     }
 
     /**
-     * @return mixed
+     * Get registerDate
+     *
+     * @return string
      */
     public function getRegisterDate()
     {
         return $this->registerDate;
     }
 
-} 
+    /**
+     * Add articles
+     *
+     * @param \Acme\HomeWorkBundle\Entity\Article $articles
+     * @return User
+     */
+    public function addArticle(\Acme\HomeWorkBundle\Entity\Article $articles)
+    {
+        $this->articles[] = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \Acme\HomeWorkBundle\Entity\Article $articles
+     */
+    public function removeArticle(\Acme\HomeWorkBundle\Entity\Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+}

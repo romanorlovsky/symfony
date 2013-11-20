@@ -4,8 +4,8 @@
 {% block user user %}
 
 {% block content %}
-    <h1 class="title">{{ page.title }}</h1>
-    <div>{{ page.description }}</div>
+    <h1 class="title">User</h1>
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
 
     <h2>User profile</h2>
     {% image '@AcmeHomeWorkBundle/Resources/public/images/user-logo.png' %}
@@ -13,13 +13,13 @@
     {% endimage %}
     <ul>
         <li>
-            <strong>Nickname: </strong>{{ user.nickName }}
+            <strong>Nickname: </strong>{{ cUser.nick }}
         </li>
         <li>
-            <strong>Display name: </strong>{{ user.displayName }}
+            <strong>Display name: </strong>{{ cUser.displayName }}
         </li>
         <li>
-            <strong>Register date: </strong>{{ user.registerDate|date('d/m/Y') }}
+            <strong>Register date: </strong>{{ cUser.registerDate|date('d/m/Y h:m:s') }}
         </li>
     </ul>
 {% endblock %}

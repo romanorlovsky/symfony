@@ -19,83 +19,92 @@ class ArticleController extends Controller
 
     public function indexAction()
     {
-        $home = new Page();
-        $home->setTitle('Home');
-        $home->setDescription('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+        $categories = $this->getDoctrine()
+            ->getRepository('AcmeHomeWorkBundle:Category')
+            ->findAll();
+
+        $user = $this->getDoctrine()
+            ->getRepository('AcmeHomeWorkBundle:User')
+            ->find(1);
+
+        return $this->render('AcmeHomeWorkBundle:Article:index.html.twig', array(
+                'categories' => $categories,
+                'user' => $user
+            )
+        );
+    }
+
+    public function userAction($id)
+    {
+        $user = $this->getDoctrine()
+            ->getRepository('AcmeHomeWorkBundle:User')
+            ->find($id);
+
+        $loggedUser = $this->getDoctrine()
+            ->getRepository('AcmeHomeWorkBundle:User')
+            ->find(1);
+
+        if (!$user) {
+            return $this->notFound($loggedUser);
+        }
+
+        return $this->render('AcmeHomeWorkBundle:User:index.html.twig', array(
+                'user' => $loggedUser,
+                'cUser' => $user
+            )
+        );
+    }
+
+    public function categoryAction($id)
+    {
+        $category = $this->getDoctrine()
+            ->getRepository('AcmeHomeWorkBundle:Category')
+            ->find($id);
 
         $articles = array();
 
-        for ($i = 0; $i < 5; ++$i) {
-            $article = new Article();
-            $article->setTitle('Article ' . ($i + 1));
-            $article->setCreated(time());
-            $article->setContent('Description ' . ($i + 1));
+        $user = $this->getDoctrine()
+            ->getRepository('AcmeHomeWorkBundle:User')
+            ->find(1);
 
-            $articles[] = $article;
+        if ($category) {
+            $articles = $category->getArticles();
+        } else {
+            return $this->notFound($user);
         }
 
-        $user = new User();
-        $user->setNickName('romanorlosky');
-        $user->setDisplayName('Roman Orlovsky');
-        $user->setRegisterDate(time());
-
-        return $this->render('AcmeHomeWorkBundle:Article:index.html.twig', array(
-                'page' => $home,
+        return $this->render('AcmeHomeWorkBundle:Article:category.html.twig', array(
+                'category' => $category,
                 'articles' => $articles,
                 'user' => $user
             )
         );
     }
 
-    public function aboutAction()
+    public function articleAction($id)
     {
-        $about = new Page();
-        $about->setTitle('About');
-        $about->setDescription('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+        $article = $this->getDoctrine()
+            ->getRepository('AcmeHomeWorkBundle:Article')
+            ->find($id);
 
-        $user = new User();
-        $user->setNickName('romanorlosky');
-        $user->setDisplayName('Roman Orlovsky');
-        $user->setRegisterDate(time());
+        $user = $this->getDoctrine()
+            ->getRepository('AcmeHomeWorkBundle:User')
+            ->find(1);
 
-        return $this->render('AcmeHomeWorkBundle:Article:about.html.twig', array(
-                'page' => $about,
+        if (!$article) {
+            return $this->notFound($user);
+        }
+
+        return $this->render('AcmeHomeWorkBundle:Article:article.html.twig', array(
+                'article' => $article,
                 'user' => $user
             )
         );
     }
 
-    public function contactAction()
+    private function notFound($user = array())
     {
-        $contact = new Page();
-        $contact->setTitle('Contact');
-        $contact->setDescription('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
-
-        $user = new User();
-        $user->setNickName('romanorlosky');
-        $user->setDisplayName('Roman Orlovsky');
-        $user->setRegisterDate(time());
-
-        return $this->render('AcmeHomeWorkBundle:Article:contact.html.twig', array(
-                'page' => $contact,
-                'user' => $user
-            )
-        );
-    }
-
-    public function userAction()
-    {
-        $contact = new Page();
-        $contact->setTitle('User');
-        $contact->setDescription('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
-
-        $user = new User();
-        $user->setNickName('romanorlosky');
-        $user->setDisplayName('Roman Orlovsky');
-        $user->setRegisterDate(time());
-
-        return $this->render('AcmeHomeWorkBundle:User:index.html.twig', array(
-                'page' => $contact,
+        return $this->render('AcmeHomeWorkBundle::404.html.twig', array(
                 'user' => $user
             )
         );

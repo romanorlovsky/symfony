@@ -1,0 +1,24 @@
+{% extends "AcmeHomeWorkBundle::layout.html.twig" %}
+
+{% block title "Atricle - Category" %}
+{% block user user %}
+
+{% block content %}
+    <h1 class="title">{{ category.title }}</h1>
+
+    {% if articles %}
+        <div class="articles-block">
+            <h2>Articles</h2>
+            <ul>
+                {% for article in articles %}
+                    <li>
+                        <a href="{{ path('_article', {'id': article.id}) }}" class="article-title">{{ article.title }}</a>
+                        <p class="article-created">{{ article.createAt|date("d/m/Y h:m:s") }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <h2>No articles found</h2>
+    {% endif %}
+{% endblock %}

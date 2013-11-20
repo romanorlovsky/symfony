@@ -1,0 +1,12 @@
+{% extends "AcmeHomeWorkBundle::layout.html.twig" %}
+
+{% block title "Atricle - " ~ article.title %}
+{% block user user %}
+
+{% block content %}
+    <h1 class="title">{{ article.title }}</h1>
+
+    <p class="article-created">{{ article.createAt|date("d/m/Y h:m:s") }}</p>
+    <div class="article-content">{{ article.content }}</div>
+    <p class="author"><b>Author:</b> {{ article.user.displayName }} ({{ article.user.nick }})</p>
+{% endblock %}
