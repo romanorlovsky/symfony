@@ -8,7 +8,7 @@
 
     <p class="article-created">{{ article.createAt|date("d/m/Y h:m:s") }}</p>
     <p class="author"><b>Author:</b> {{ article.user.displayName }} ({{ article.user.nick }})</p>
-    <p><b>Category: </b>{{ article.category.title }}</p>
+    <p><b>Category: </b><a href="{{ path('_category', {'id':article.category.id }) }}">{{ article.category.title }}</a></p>
     <div class="article-content">{{ article.content }}</div>
     {% if article.tags %}
         <div>

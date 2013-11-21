@@ -14,6 +14,7 @@
                     <li>
                         <a href="{{ path('_article', {'id': article.id}) }}" class="article-title">{{ article.title }}</a>
                         <p class="article-created">{{ article.createAt|date("d/m/Y h:m:s") }}</p>
+                        <p><b>Category: </b><a href="{{ path('_category', {'id':article.category.id }) }}">{{ article.category.title }}</a></p>
                         {% if article.tags %}
                             <div>
                                 <b>Tags: </b>
