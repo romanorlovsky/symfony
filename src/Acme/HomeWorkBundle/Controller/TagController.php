@@ -4,24 +4,27 @@ namespace Acme\HomeWorkBundle\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class ArticleController extends DefaultController
+class TagController extends DefaultController
 {
     public function indexAction($id)
     {
-        $article = $this->getDoctrine()
-            ->getRepository('AcmeHomeWorkBundle:Article')
+        $tag = $this->getDoctrine()
+            ->getRepository('AcmeHomeWorkBundle:Tag')
             ->find($id);
 
         $user = $this->getDoctrine()
             ->getRepository('AcmeHomeWorkBundle:User')
             ->find(1);
 
-        if (!$article) {
+        if (!$tag) {
             return $this->notFound($user);
         }
 
-        return $this->render('AcmeHomeWorkBundle:Article:index.html.twig', array(
-                'article' => $article,
+        $articles = $tag->getArticles();
+
+        return $this->render('AcmeHomeWorkBundle:Tag:index.html.twig', array(
+                'tag' => $tag,
+                'articles' => $articles,
                 'user' => $user
             )
         );

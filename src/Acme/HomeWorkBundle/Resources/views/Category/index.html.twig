@@ -14,6 +14,14 @@
                     <li>
                         <a href="{{ path('_article', {'id': article.id}) }}" class="article-title">{{ article.title }}</a>
                         <p class="article-created">{{ article.createAt|date("d/m/Y h:m:s") }}</p>
+                        {% if article.tags %}
+                            <div>
+                                <b>Tags: </b>
+                                {% for tag in article.tags %}
+                                    <a href="{{ path('_tag', {'id': tag.id}) }}">{{ tag.text }}</a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </li>
                 {% endfor %}
             </ul>

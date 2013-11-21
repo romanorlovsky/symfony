@@ -9,8 +9,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * User
  *
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="Acme\HomeWorkBundle\Entity\UserRepository")
+ * @ORM\Table(name="users")
+ * @ORM\Entity(repositoryClass="Acme\HomeWorkBundle\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class User

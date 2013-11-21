@@ -1,0 +1,24 @@
+{% extends "AcmeHomeWorkBundle::layout.html.twig" %}
+
+{% block title "Atricle - Home" %}
+{% block user user %}
+
+{% block content %}
+    <h1 class="title">Home</h1>
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+
+    {% if categories %}
+        <div class="articles-block">
+            <h2>Categories</h2>
+            <ul>
+                {% for category in categories %}
+                    <li>
+                        <a href="{{ path('_category', {'id': category.id}) }}" class="article-title">{{ category.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <h2>No categories found</h2>
+    {% endif %}
+{% endblock %}

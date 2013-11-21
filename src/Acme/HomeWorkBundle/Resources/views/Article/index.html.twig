@@ -1,24 +1,21 @@
 {% extends "AcmeHomeWorkBundle::layout.html.twig" %}
 
-{% block title "Atricle - Home" %}
+{% block title "Atricle - " ~ article.title %}
 {% block user user %}
 
 {% block content %}
-    <h1 class="title">Home</h1>
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+    <h1 class="title">{{ article.title }}</h1>
 
-    {% if categories %}
-        <div class="articles-block">
-            <h2>Categories</h2>
-            <ul>
-                {% for category in categories %}
-                    <li>
-                        <a href="{{ path('_category', {'id': category.id}) }}" class="article-title">{{ category.title }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
+    <p class="article-created">{{ article.createAt|date("d/m/Y h:m:s") }}</p>
+    <p class="author"><b>Author:</b> {{ article.user.displayName }} ({{ article.user.nick }})</p>
+    <p><b>Category: </b>{{ article.category.title }}</p>
+    <div class="article-content">{{ article.content }}</div>
+    {% if article.tags %}
+        <div>
+            <b>Tags: </b>
+            {% for tag in article.tags %}
+                <a href="{{ path('_tag', {'id': tag.id}) }}">{{ tag.text }}</a>
+            {% endfor %}
         </div>
-    {% else %}
-        <h2>No categories found</h2>
     {% endif %}
 {% endblock %}

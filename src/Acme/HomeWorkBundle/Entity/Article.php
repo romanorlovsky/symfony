@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Article
  *
- * @ORM\Table(name="article")
- * @ORM\Entity(repositoryClass="Acme\HomeWorkBundle\Entity\ArticleRepository")
+ * @ORM\Table(name="articles")
+ * @ORM\Entity(repositoryClass="Acme\HomeWorkBundle\Repository\ArticleRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Article
@@ -32,21 +32,32 @@ class Article
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createAt", type="datetime")
+     * @ORM\Column(name="create_at", type="datetime")
      */
     private $createAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="articles")
-     * @ORM\JoinColumn(name="category", referencedColumnName="id")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $category;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="articles")
-     * @ORM\JoinColumn(name="user", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
+
+    /**
+     * Tags for post
+     *
+     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\JoinTable(name="articles_tags",
+     * joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
+     * inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     * )
+     */
+    private $tags;
 
     /**
      * @var string
@@ -175,5 +186,45 @@ class Article
     public function getUser()
     {
         return $this->user;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add tags
+     *
+     * @param \Acme\HomeWorkBundle\Entity\Tag $tags
+     * @return Article
+     */
+    public function addTag(\Acme\HomeWorkBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+    
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \Acme\HomeWorkBundle\Entity\Tag $tags
+     */
+    public function removeTag(\Acme\HomeWorkBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

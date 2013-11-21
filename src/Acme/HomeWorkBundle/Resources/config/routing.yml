@@ -1,21 +1,27 @@
 _article_welcome:
     path:   /
-    defaults: { _controller: AcmeHomeWorkBundle:Article:index }
+    defaults: { _controller: AcmeHomeWorkBundle:Home:index }
 
 _user:
     path:  /user/{id}
-    defaults: { _controller: AcmeHomeWorkBundle:Article:user }
+    defaults: { _controller: AcmeHomeWorkBundle:User:index }
     requirements:
           id:  \d+
 
 _category:
     path:  /category/{id}
-    defaults: { _controller: AcmeHomeWorkBundle:Article:category }
+    defaults: { _controller: AcmeHomeWorkBundle:Category:index }
     requirements:
           id:  \d+
 
 _article:
     path:  /article/{id}
-    defaults: { _controller: AcmeHomeWorkBundle:Article:article }
+    defaults: { _controller: AcmeHomeWorkBundle:Article:index }
+    requirements:
+          id:  \d+
+
+_tag:
+    path:  /tag/{id}
+    defaults: { _controller: AcmeHomeWorkBundle:Tag:index }
     requirements:
           id:  \d+

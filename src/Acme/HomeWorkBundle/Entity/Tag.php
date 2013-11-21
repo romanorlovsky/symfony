@@ -1,17 +1,18 @@
 <?php
 
+
 namespace Acme\HomeWorkBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Category
+ * Tag
  *
- * @ORM\Table(name="categories")
- * @ORM\Entity(repositoryClass="Acme\HomeWorkBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="tags")
+ * @ORM\Entity(repositoryClass="Acme\HomeWorkBundle\Repository\TagRepository")
  */
-class Category
+class Tag
 {
     /**
      * @var integer
@@ -25,12 +26,12 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="text", type="string", length=255)
      */
-    private $title;
+    protected $text;
 
     /**
-     * @ORM\OneToMany(targetEntity="Article", mappedBy="category")
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="tags")
      */
     protected $articles;
 
@@ -50,33 +51,33 @@ class Category
     }
 
     /**
-     * Set title
+     * Set text
      *
-     * @param string $title
-     * @return Category
+     * @param string $text
+     * @return Tag
      */
-    public function setTitle($title)
+    public function setText($text)
     {
-        $this->title = $title;
+        $this->text = $text;
     
         return $this;
     }
 
     /**
-     * Get title
+     * Get text
      *
      * @return string 
      */
-    public function getTitle()
+    public function getText()
     {
-        return $this->title;
+        return $this->text;
     }
 
     /**
      * Add articles
      *
      * @param \Acme\HomeWorkBundle\Entity\Article $articles
-     * @return Category
+     * @return Tag
      */
     public function addArticle(\Acme\HomeWorkBundle\Entity\Article $articles)
     {
