@@ -14,7 +14,7 @@ class UserController extends DefaultController
 
         $loggedUser = $this->getDoctrine()
             ->getRepository('AcmeHomeWorkBundle:User')
-            ->find(1);
+            ->findByNick('admin');
 
         if (!$user) {
             return $this->notFound($loggedUser);

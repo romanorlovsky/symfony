@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function findByNick($nick = '')
+    {
+        $query = $this->createQueryBuilder('u')
+            ->where('u.nick LIKE :nick')
+            ->setParameter('nick', $nick)
+            ->getQuery();
+
+        return $query->getSingleResult();
+    }
 }

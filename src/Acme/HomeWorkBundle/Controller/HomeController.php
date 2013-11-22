@@ -12,7 +12,7 @@ class HomeController extends DefaultController
 
         $user = $this->getDoctrine()
             ->getRepository('AcmeHomeWorkBundle:User')
-            ->find(1);
+            ->findByNick('admin');
 
         return $this->render('AcmeHomeWorkBundle:Home:index.html.twig', array(
                 'categories' => $categories,

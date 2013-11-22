@@ -17,7 +17,7 @@ class CategoryController extends DefaultController
 
         $user = $this->getDoctrine()
             ->getRepository('AcmeHomeWorkBundle:User')
-            ->find(1);
+            ->findByNick('admin');
 
         if ($category) {
             $articles = $category->getArticles();

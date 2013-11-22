@@ -14,7 +14,7 @@ class TagController extends DefaultController
 
         $user = $this->getDoctrine()
             ->getRepository('AcmeHomeWorkBundle:User')
-            ->find(1);
+            ->findByNick('admin');
 
         if (!$tag) {
             return $this->notFound($user);
