@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="user_repository.class">Acme\HomeWorkBundle\Repository\User</parameter>
+        <parameter key="category_repository.class">Acme\HomeWorkBundle\Repository\Category</parameter>
+        <parameter key="tag_repository.class">Acme\HomeWorkBundle\Repository\Tag</parameter>
+        <parameter key="article_repository.class">Acme\HomeWorkBundle\Repository\Article</parameter>
+    </parameters>
+
+    <services>
+        <service id="user_repository" class="%user_repository.class%"></service>
+        <service id="category_repository" class="%category_repository.class%"></service>
+        <service id="tag_repository" class="%tag_repository.class%"></service>
+        <service id="article_repository" class="%article_repository.class%"></service>
+    </services>
+
+</container>

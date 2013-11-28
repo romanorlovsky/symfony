@@ -8,9 +8,7 @@ class ArticleController extends DefaultController
 {
     public function indexAction($id)
     {
-        $article = $this->getDoctrine()
-            ->getRepository('AcmeHomeWorkBundle:Article')
-            ->find($id);
+        $article = $this->get('article_repository')->find($id);
 
         $user = $this->getDoctrine()
             ->getRepository('AcmeHomeWorkBundle:User')
