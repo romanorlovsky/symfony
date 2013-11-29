@@ -9,15 +9,17 @@ class CategoryController extends DefaultController
 
     public function indexAction($id)
     {
-        $category = $this->getDoctrine()
-            ->getRepository('AcmeHomeWorkBundle:Category')
-            ->find($id);
+        /**
+         * @var \Acme\HomeWorkBundle\Entity\Category $category
+        */
+        $category = $this->get('category_repository')->find($id);
 
         $articles = array();
 
-        $user = $this->getDoctrine()
-            ->getRepository('AcmeHomeWorkBundle:User')
-            ->findByNick('admin');
+        /**
+         * @var \Acme\HomeWorkBundle\Entity\User $user
+         */
+        $user = $this->get('user_repository')->findByNick('admin');
 
         if ($category) {
             $articles = $category->getArticles();

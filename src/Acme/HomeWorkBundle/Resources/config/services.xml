@@ -2,17 +2,48 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="user_repository.class">Acme\HomeWorkBundle\Repository\User</parameter>
-        <parameter key="category_repository.class">Acme\HomeWorkBundle\Repository\Category</parameter>
-        <parameter key="tag_repository.class">Acme\HomeWorkBundle\Repository\Tag</parameter>
-        <parameter key="article_repository.class">Acme\HomeWorkBundle\Repository\Article</parameter>
+        <parameter key="user_repository.class">Acme\HomeWorkBundle\Repository\UserRepository</parameter>
+        <parameter key="category_repository.class">Acme\HomeWorkBundle\Repository\CategoryRepository</parameter>
+        <parameter key="tag_repository.class">Acme\HomeWorkBundle\Repository\TagRepository</parameter>
+        <parameter key="article_repository.class">Acme\HomeWorkBundle\Repository\ArticleRepository</parameter>
+        <parameter key="user_forgot_data.class">Acme\HomeWorkBundle\UserForgotData</parameter>
     </parameters>
 
     <services>
-        <service id="user_repository" class="%user_repository.class%"></service>
-        <service id="category_repository" class="%category_repository.class%"></service>
-        <service id="tag_repository" class="%tag_repository.class%"></service>
-        <service id="article_repository" class="%article_repository.class%"></service>
+        <service id="user_repository"
+                 class="%user_repository.class%"
+                 factory-service="doctrine.orm.entity_manager"
+                 factory-method="getRepository">
+            <argument>Acme\HomeWorkBundle\Entity\User</argument>
+        </service>
+        <service id="category_repository"
+                 class="%category_repository.class%"
+                 factory-service="doctrine.orm.entity_manager"
+                 factory-method="getRepository">
+            <argument>Acme\HomeWorkBundle\Entity\Category</argument>
+        </service>
+        <service id="tag_repository"
+                 class="%tag_repository.class%"
+                 factory-service="doctrine.orm.entity_manager"
+                 factory-method="getRepository">
+            <argument>Acme\HomeWorkBundle\Entity\Tag</argument>
+        </service>
+        <service id="article_repository"
+                 class="%article_repository.class%"
+                 factory-service="doctrine.orm.entity_manager"
+                 factory-method="getRepository">
+            <argument>Acme\HomeWorkBundle\Entity\Article</argument>
+        </service>
+        <service id="user_forgot_data" class="%user_forgot_data.class%">
+            <argument type="service" id="mailer"></argument>
+            <call method="setTransport">
+                <argument>%mailer_encryption%</argument>
+                <argument>%mailer_port%</argument>
+                <argument>%mailer_host%</argument>
+                <argument>%mailer_user%</argument>
+                <argument>%mailer_password%</argument>
+            </call>
+        </service>
     </services>
 
 </container>

@@ -8,13 +8,15 @@ class UserController extends DefaultController
 {
     public function indexAction($id)
     {
-        $user = $this->getDoctrine()
-            ->getRepository('AcmeHomeWorkBundle:User')
-            ->find($id);
+        /**
+         * @var \Acme\HomeWorkBundle\Entity\User $user
+         */
+        $user = $this->get('user_repository')->find($id);
 
-        $loggedUser = $this->getDoctrine()
-            ->getRepository('AcmeHomeWorkBundle:User')
-            ->findByNick('admin');
+        /**
+         * @var \Acme\HomeWorkBundle\Entity\User $loggedUser
+         */
+        $loggedUser = $this->get('user_repository')->findByNick('admin');
 
         if (!$user) {
             return $this->notFound($loggedUser);
@@ -25,5 +27,21 @@ class UserController extends DefaultController
                 'cUser' => $user
             )
         );
+    }
+
+    public function forgotDataAction($id)
+    {
+        /**
+         * @var \Acme\HomeWorkBundle\Entity\User $user
+         */
+        $user = $this->get('user_repository')->find($id);
+
+        if (!$user) {
+            return $this->redirect($this->generateUrl('user'));
+        }
+
+        $this->get('user_forgot_data')->sendData($user);
+
+        return $this->redirect($this->generateUrl('_user', array('id' => $user->getId())));
     }
 }

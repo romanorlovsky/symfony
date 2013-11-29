@@ -8,13 +8,15 @@ class TagController extends DefaultController
 {
     public function indexAction($id)
     {
-        $tag = $this->getDoctrine()
-            ->getRepository('AcmeHomeWorkBundle:Tag')
-            ->find($id);
+        /**
+         * @var \Acme\HomeWorkBundle\Entity\Tag $tag
+         */
+        $tag = $this->get('tag_repository')->find($id);
 
-        $user = $this->getDoctrine()
-            ->getRepository('AcmeHomeWorkBundle:User')
-            ->findByNick('admin');
+        /**
+         * @var \Acme\HomeWorkBundle\Entity\User $user
+         */
+        $user = $this->get('user_repository')->findByNick('admin');
 
         if (!$tag) {
             return $this->notFound($user);

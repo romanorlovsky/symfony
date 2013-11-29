@@ -39,6 +39,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $admin->setPassword($encoder->encodePassword('123123', md5(uniqid())));*/
         $admin->setPassword('123123');
         $admin->setDisplayName('Roman Orlovsky');
+        $admin->setEmail('iziaproger@gmail.com');
 
         $manager->persist($admin);
 

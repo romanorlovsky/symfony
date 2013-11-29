@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class DefaultController extends Controller
 {
-    protected function notFound($user = array())
+    protected function notFound(\Acme\HomeWorkBundle\Entity\User $user)
     {
         return $this->render('AcmeHomeWorkBundle::404.html.twig', array(
                 'user' => $user

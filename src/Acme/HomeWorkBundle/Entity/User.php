@@ -46,6 +46,13 @@ class User
     protected $displayName;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    protected $email;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="registerDate", type="datetime")
@@ -192,5 +199,28 @@ class User
     public function getArticles()
     {
         return $this->articles;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

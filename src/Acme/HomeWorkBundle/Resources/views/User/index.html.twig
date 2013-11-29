@@ -22,4 +22,5 @@
             <strong>Register date: </strong>{{ cUser.registerDate|date('d/m/Y h:m:s') }}
         </li>
     </ul>
+    <a href="{{ path('_user_forgot', {'id': cUser.id}) }}">Forgot password</a>
 {% endblock %}

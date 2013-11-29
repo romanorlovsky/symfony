@@ -8,6 +8,12 @@ _user:
     requirements:
           id:  \d+
 
+_user_forgot:
+    path:  /user/forgot/{id}
+    defaults: { _controller: AcmeHomeWorkBundle:User:forgotData }
+    requirements:
+          id:  \d+
+
 _category:
     path:  /category/{id}
     defaults: { _controller: AcmeHomeWorkBundle:Category:index }

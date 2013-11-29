@@ -7,7 +7,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class AcmeHomeWorkBundleExtension extends Extension
+class AcmeHomeWorkExtension extends Extension
 {
     /**
      * {@inheritDoc}
