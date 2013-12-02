@@ -1,0 +1,22 @@
+{% extends "GuestBookBundle::layout.html.twig" %}
+
+{% block title "GuestBook - Home" %}
+
+{% block content %}
+    <h1 class="title">Home</h1>
+
+    {% if articles %}
+        <div class="articles-block">
+            <ul>
+                {% for article in articles %}
+                    <li>
+                        <a href="{{ path('_article', {'id': article.id}) }}" class="article-title">Article #{{ article.id }}</a>
+                        <p>{{ article.content|slice(0, 100) }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <h2>No categories found</h2>
+    {% endif %}
+{% endblock %}

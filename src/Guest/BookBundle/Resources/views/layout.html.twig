@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset={{ _charset }}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <title>{% block title %}{% endblock %}</title>
+    {% stylesheets '@bootstrap_min_css' '@bootstrap_theme_css' '@starter_template_css' %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+
+{{ include('GuestBookBundle::_navigation.html.twig') }}
+
+<div class="container">
+
+    <div class="starter-template">
+        {% block content %}{% endblock %}
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{% javascripts '@jquery' '@javaScript_bootstrap' %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+</body>
+</html>

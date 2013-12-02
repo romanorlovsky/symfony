@@ -1,0 +1,15 @@
+_article_welcome:
+    path:   /
+    defaults: { _controller: GuestBookBundle:Home:index }
+
+_user:
+    path:  /user/{id}
+    defaults: { _controller: GuestBookBundle:User:index }
+    requirements:
+          id:  \d+
+
+_article:
+    path:  /article/{id}
+    defaults: { _controller: GuestBookBundle:Article:index }
+    requirements:
+          id:  \d+

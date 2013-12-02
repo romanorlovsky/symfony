@@ -1,0 +1,11 @@
+{% extends "GuestBookBundle::layout.html.twig" %}
+
+{% block title "Atricle - Article #" ~ article.id %}
+
+{% block content %}
+    <h1 class="title">Article #{{ article.id }}</h1>
+
+    <p class="article-created">{{ article.createAt|date("d/m/Y h:m:s") }}</p>
+    <p class="author"><b>Author:</b> {{ article.user.name }} (<a href="{{ path('_user', {'id': article.user.id}) }}">{{ article.user.name }}</a>)</p>
+    <div class="article-content">{{ article.content }}</div>
+{% endblock %}

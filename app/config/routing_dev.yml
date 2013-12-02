@@ -13,6 +13,6 @@ _configurator:
 _main:
     resource: routing.yml
 
-# AcmeDemoBundle routes (to be removed)
-_acme_home_work:
-    resource: "@AcmeHomeWorkBundle/Resources/config/routing.yml"
+# GuestBookBundle routes (to be removed)
+_guest_home_work:
+    resource: "@GuestBookBundle/Resources/config/routing.yml"

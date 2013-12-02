@@ -1,0 +1,16 @@
+{% extends "GuestBookBundle::layout.html.twig" %}
+
+{% block title "Atricle - User" %}
+
+{% block content %}
+    <h1 class="title">User</h1>
+
+    <ul>
+        {% for article in user.articles %}
+            <li>
+                <a href="{{ path('_article', {'id': article.id}) }}" class="article-title">Article #{{ article.id }}</a>
+                <p>{{ article.content|slice(0, 100) }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

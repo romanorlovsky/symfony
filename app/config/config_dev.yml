@@ -25,7 +25,7 @@ monolog:
             level: info
 
 assetic:
-    bundles: [ AcmeHomeWorkBundle ]
+    bundles: [ GuestBookBundle ]
     use_controller: true
     #java: /usr/bin/java
     filters:
@@ -47,7 +47,7 @@ assetic:
             output: css/bootstrap.min.css
         starter_template_css:
             inputs:
-                - %kernel.root_dir%/../src/Acme/HomeWorkBundle/Resources/public/css/starter-template.css
+                - %kernel.root_dir%/../src/Guest/BookBundle/Resources/public/css/starter-template.css
             output: css/starter-template.css
         bootstrap_theme_css:
             inputs:
