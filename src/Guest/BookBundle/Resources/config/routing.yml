@@ -19,13 +19,13 @@ _not_found:
     defaults: { _controller: GuestBookBundle:Default:notFound }
 
 _article_remove:
-    path:  /article/remove/{id}
+    path:  /article/{id}/remove
     defaults: { _controller: GuestBookBundle:Article:remove }
     requirements:
           id:  \d+
 
 _article_update:
-    path:  /article/update/{id}
+    path:  /article/{id}/update
     defaults: { _controller: GuestBookBundle:Article:update }
     requirements:
           id:  \d+
