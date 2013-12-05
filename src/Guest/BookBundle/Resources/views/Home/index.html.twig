@@ -3,19 +3,22 @@
 {% block title "GuestBook - Home" %}
 
 {% block content %}
-    <h1 class="title">Home</h1>
+    {% if pagination.getTotalItemCount %}
+        {{ knp_pagination_render(pagination) }}
 
-    {% if articles %}
         <div class="articles-block">
             <ul>
-                {% for article in articles %}
+                {% for article in pagination %}
                     <li>
                         <a href="{{ path('_article', {'id': article.id}) }}" class="article-title">Article #{{ article.id }}</a>
+                        <a href="{{ path('_article_remove', {'id': article.id}) }}" class="article-title">Remove article</a>
                         <p>{{ article.content|slice(0, 100) }}</p>
                     </li>
                 {% endfor %}
             </ul>
         </div>
+
+        {{ knp_pagination_render(pagination) }}
     {% else %}
         <h2>No categories found</h2>
     {% endif %}

@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function getDefaultQueryBuilder()
+    {
+        return $this->createQueryBuilder('u');
+    }
+
+    public function getManager()
+    {
+        return $this->getEntityManager();
+    }
 }

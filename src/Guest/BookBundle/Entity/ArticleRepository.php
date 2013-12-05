@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
+    public function getDefaultQueryBuilder()
+    {
+        return $this->createQueryBuilder('a')->orderBy('a.id', 'ASC');
+    }
+
+    public function getManager()
+    {
+        return $this->getEntityManager();
+    }
 }

@@ -6,15 +6,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class HomeController extends Controller
 {
-    public function indexAction()
+    public function indexAction($page)
     {
         /**
-         * @var \Guest\BookBundle\Entity\Article $articles
+         * @var \Guest\BookBundle\Entity\ArticleRepository $query
          */
-        $articles = $this->get('article_repository')->findAll();
+        $query = $this->get('article_repository');
+
+        /**
+         * @var \Knp\Component\Pager\Paginator $paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query->getDefaultQueryBuilder(),
+            $page
+        );
 
         return $this->render('GuestBookBundle:Home:index.html.twig', array(
-                'articles' => $articles
+                'pagination' => $pagination
             )
         );
     }
