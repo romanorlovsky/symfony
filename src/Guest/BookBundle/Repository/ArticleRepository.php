@@ -1,6 +1,6 @@
 <?php
 
-namespace Guest\BookBundle\Entity;
+namespace Guest\BookBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -15,6 +15,14 @@ class ArticleRepository extends EntityRepository
     public function getDefaultQueryBuilder()
     {
         return $this->createQueryBuilder('a')->orderBy('a.id', 'ASC');
+    }
+
+    public function getArticlesByUser($id)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.user = :user_id')
+            ->setParameter('user_id', $id)
+            ->orderBy('a.id', 'ASC');
     }
 
     public function getManager()

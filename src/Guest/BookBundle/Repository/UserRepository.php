@@ -1,6 +1,6 @@
 <?php
 
-namespace Guest\BookBundle\Entity;
+namespace Guest\BookBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -20,5 +20,15 @@ class UserRepository extends EntityRepository
     public function getManager()
     {
         return $this->getEntityManager();
+    }
+
+    public function findByEmail($email = '')
+    {
+        $query = $this->createQueryBuilder('u')
+            ->where('u.email LIKE :email')
+            ->setParameter('email', $email)
+            ->getQuery();
+
+        return $query->getOneOrNullResult();
     }
 }

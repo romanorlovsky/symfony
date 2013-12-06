@@ -24,8 +24,18 @@ _article_remove:
     requirements:
           id:  \d+
 
+_article_edit:
+    path:  /article/{id}/edit
+    defaults: { _controller: GuestBookBundle:Article:edit }
+    requirements:
+          id:  \d+
+
 _article_update:
     path:  /article/{id}/update
     defaults: { _controller: GuestBookBundle:Article:update }
     requirements:
           id:  \d+
+
+_article_create:
+    path:  /article/create
+    defaults: { _controller: GuestBookBundle:Article:create }

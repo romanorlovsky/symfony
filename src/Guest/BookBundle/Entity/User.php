@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * User
  *
  * @ORM\Table(name="users")
- * @ORM\Entity(repositoryClass="Guest\BookBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="Guest\BookBundle\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class User

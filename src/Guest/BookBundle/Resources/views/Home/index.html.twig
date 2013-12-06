@@ -3,6 +3,15 @@
 {% block title "GuestBook - Home" %}
 
 {% block content %}
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.user) }}
+        {{ form_row(form.content) }}
+        {{ form_row(form._token) }}
+        {{ form_row(form.add) }}
+    {{ form_end(form, {'render_rest': false}) }}
+
     {% if pagination.getTotalItemCount %}
         {{ knp_pagination_render(pagination) }}
 
@@ -11,7 +20,14 @@
                 {% for article in pagination %}
                     <li>
                         <a href="{{ path('_article', {'id': article.id}) }}" class="article-title">Article #{{ article.id }}</a>
-                        <a href="{{ path('_article_remove', {'id': article.id}) }}" class="article-title">Remove article</a>
+                        <ul>
+                            <li>
+                                <a href="{{ path('_article_remove', {'id': article.id}) }}" class="remove-article">Remove article</a>
+                            </li>
+                            {#<li>
+                                <a href="{{ path('_article_edit', {'id': article.id}) }}" class="edit-article">Edit article</a>
+                            </li>#}
+                        </ul>
                         <p>{{ article.content|slice(0, 100) }}</p>
                     </li>
                 {% endfor %}
@@ -21,5 +37,9 @@
         {{ knp_pagination_render(pagination) }}
     {% else %}
         <h2>No categories found</h2>
+
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
     {% endif %}
 {% endblock %}

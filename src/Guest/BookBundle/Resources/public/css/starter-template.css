@@ -18,7 +18,7 @@ body {
     color: #808080;
 }
 
-.articles-block ul > li {
+.articles-block > ul > li {
     border-bottom: 1px dotted #808080;
     margin-bottom: 15px;
     padding-bottom: 10px;

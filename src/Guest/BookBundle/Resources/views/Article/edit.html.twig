@@ -1,0 +1,15 @@
+{% extends "GuestBookBundle::layout.html.twig" %}
+
+{% block title "Atricle - Article #" ~ article.id %}
+
+{% block content %}
+    <h1 class="title">Edit article #{{ article.id }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.content) }}
+        {{ form_row(form._token) }}
+        {{ form_row(form.update) }}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endblock %}

@@ -49,6 +49,10 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../src/Guest/BookBundle/Resources/public/css/starter-template.css
             output: css/starter-template.css
+        script_js:
+            inputs:
+                - %kernel.root_dir%/../src/Guest/BookBundle/Resources/public/javascript/script.js
+            output: js/script.css
         bootstrap_theme_css:
             inputs:
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap-theme.min.css

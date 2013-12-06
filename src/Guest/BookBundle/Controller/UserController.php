@@ -10,7 +10,7 @@ class UserController extends Controller
     public function indexAction($id, $page)
     {
         /**
-         * @var \Guest\BookBundle\Entity\UserRepository $user
+         * @var \Guest\BookBundle\Repository\UserRepository $user
          */
         $user = $this->get('user_repository')->find($id);
 
@@ -19,11 +19,16 @@ class UserController extends Controller
         }
 
         /**
+         * @var \Guest\BookBundle\Repository\ArticleRepository $articleRepository
+         */
+        $articleRepository = $this->get('article_repository');
+
+        /**
          * @var \Knp\Component\Pager\Paginator $paginator
          */
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $user->getArticles(),
+            $articleRepository->getArticlesByUser($id),
             $page
         );
 
