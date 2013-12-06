@@ -6,14 +6,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ArticleType extends AbstractType
+class ArticleEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('user', new UserType())
             ->add('content', 'textarea')
-            ->add('add', 'submit')
             ->add('update', 'submit');
     }
 

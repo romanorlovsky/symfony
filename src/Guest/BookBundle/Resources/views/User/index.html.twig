@@ -15,9 +15,9 @@
                     <li>
                         <a href="{{ path('_article_remove', {'id': article.id}) }}" class="remove-article">Remove article</a>
                     </li>
-                    {#<li>
+                    <li>
                         <a href="{{ path('_article_edit', {'id': article.id}) }}" class="edit-article">Edit article</a>
-                    </li>#}
+                    </li>
                 </ul>
                 <p>{{ article.content|slice(0, 100) }}</p>
             </li>

@@ -3,7 +3,7 @@
 namespace Guest\BookBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Guest\BookBundle\Form\Type\ArticleType;
+use Guest\BookBundle\Form\Type\ArticleCreateType;
 
 class HomeController extends Controller
 {
@@ -24,7 +24,7 @@ class HomeController extends Controller
         );
 
         $form = $this->createForm(
-            new ArticleType(),
+            new ArticleCreateType(),
             null,
             array(
                 'action' => $this->generateUrl('_article_create'),

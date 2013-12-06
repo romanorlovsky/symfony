@@ -5,7 +5,8 @@ namespace Guest\BookBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Guest\BookBundle\Form\Type\ArticleType;
+use Guest\BookBundle\Form\Type\ArticleCreateType;
+use Guest\BookBundle\Form\Type\ArticleEditType;
 
 class ArticleController extends Controller
 {
@@ -28,7 +29,7 @@ class ArticleController extends Controller
 
     public function createAction(Request $request)
     {
-        $form = $this->createForm(new ArticleType());
+        $form = $this->createForm(new ArticleCreateType());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -92,7 +93,7 @@ class ArticleController extends Controller
         }
 
         $form = $this->createForm(
-            new ArticleType(),
+            new ArticleEditType(),
             $article,
             array(
                 'action' => $this->generateUrl('_article_update', array('id' => $id)),
@@ -123,7 +124,7 @@ class ArticleController extends Controller
             return $this->redirect($this->generateUrl('_not_found'));
         }
 
-        $form = $this->createForm(new ArticleType(), $article);
+        $form = $this->createForm(new ArticleEditType(), $article);
         $form->handleRequest($request);
 
         if ($form->isValid()) {

@@ -3,6 +3,8 @@
 namespace Guest\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Guest\BookBundle\Entity\User;
 
 /**
  * Article
@@ -37,6 +39,11 @@ class Article
 
     /**
      * @var string
+     *
+     * @Assert\Length(
+     *        min = "100",
+     *        minMessage = "The content must be at least {{ limit }} characters length"
+     * )
      *
      * @ORM\Column(name="content", type="text")
      */
@@ -101,7 +108,7 @@ class Article
      * @param \Guest\BookBundle\Entity\User $user
      * @return Article
      */
-    public function setUser(\Guest\BookBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
     

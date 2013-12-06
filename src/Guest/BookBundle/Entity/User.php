@@ -5,6 +5,8 @@ namespace Guest\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Guest\BookBundle\Entity\Article;
 
 /**
  * User
@@ -34,6 +36,13 @@ class User
     /**
      * @var string
      *
+     * @Assert\NotBlank(
+     *      message = "Email is required."
+     * )
+     * @Assert\Email(
+     *      message = "The email '{{ value }}' is not a valid email."
+     * )
+     *
      * @ORM\Column(name="email", type="string", length=255)
      */
     protected $email;
@@ -42,18 +51,19 @@ class User
      * @ORM\OneToMany(targetEntity="Article", mappedBy="user")
      */
     protected $articles;
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -69,14 +79,14 @@ class User
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -92,14 +102,14 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -112,10 +122,10 @@ class User
      * @param \Guest\BookBundle\Entity\Article $articles
      * @return User
      */
-    public function addArticle(\Guest\BookBundle\Entity\Article $articles)
+    public function addArticle(Article $articles)
     {
         $this->articles[] = $articles;
-    
+
         return $this;
     }
 
@@ -124,7 +134,7 @@ class User
      *
      * @param \Guest\BookBundle\Entity\Article $articles
      */
-    public function removeArticle(\Guest\BookBundle\Entity\Article $articles)
+    public function removeArticle(Article $articles)
     {
         $this->articles->removeElement($articles);
     }
@@ -132,7 +142,7 @@ class User
     /**
      * Get articles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {

@@ -5,6 +5,15 @@
 {% block content %}
     <h1 class="title">Article #{{ article.id }}</h1>
 
+    <ul>
+        <li>
+            <a href="{{ path('_article_remove', {'id': article.id}) }}" class="remove-article">Remove article</a>
+        </li>
+        <li>
+            <a href="{{ path('_article_edit', {'id': article.id}) }}" class="edit-article">Edit article</a>
+        </li>
+    </ul>
+
     <p class="article-created">{{ article.createAt|date("d/m/Y h:m:s") }}</p>
     <p class="author"><b>Author:</b>
     {% if article.user.name %}
