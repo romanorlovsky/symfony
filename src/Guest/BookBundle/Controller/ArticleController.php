@@ -32,12 +32,17 @@ class ArticleController extends Controller
         $form = $this->createForm(new ArticleCreateType());
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            /**
-             * @var \Guest\BookBundle\Entity\Article $data
-             */
-            $data = $form->getData();
+        /**
+         * @var \Guest\BookBundle\Repository\ArticleRepository $articleRepository
+         */
+        $articleRepository = $this->get('article_repository');
 
+        /**
+         * @var \Guest\BookBundle\Entity\Article $data
+         */
+        $data = $form->getData();
+
+        if ($form->isValid()) {
             /**
              * @var \Guest\BookBundle\Repository\UserRepository $userRepository
              */
@@ -63,17 +68,18 @@ class ArticleController extends Controller
                 $em->flush();
             }
 
-            /**
-             * @var \Guest\BookBundle\Repository\ArticleRepository $articleRepository
-             */
-            $articleRepository = $this->get('article_repository');
-
             $em = $articleRepository->getManager();
             $em->persist($data);
             $em->flush();
-        }
 
-        return $this->redirect($this->generateUrl('_article_welcome'));
+            return $this->redirect($this->generateUrl('_article_welcome'));
+        } else {
+            return $this->render('GuestBookBundle:Article:edit.html.twig', array(
+                    'article' => $data,
+                    'form' => $form->createView()
+                )
+            );
+        }
     }
 
     public function editAction($id)
@@ -131,9 +137,15 @@ class ArticleController extends Controller
             $em = $articleRepository->getManager();
             $em->persist($article);
             $em->flush();
-        }
 
-        return $this->redirect($this->generateUrl('_article', array('id' => $id)));
+            return $this->redirect($this->generateUrl('_article', array('id' => $id)));
+        } else {
+            return $this->render('GuestBookBundle:Article:edit.html.twig', array(
+                    'article' => $article,
+                    'form' => $form->createView()
+                )
+            );
+        }
     }
 
     public function removeAction($id)
